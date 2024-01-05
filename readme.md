@@ -53,4 +53,4 @@ podman-compose up -d
 
 ## Author
 
-Tamas Molnar - <tmolnar0831@gmail.com> - https://tomsitcafe.com
+Tamas Molnar - <tmolnar0831@gmail.com> - [https://tomsitcafe.com](https://tomsitcafe.com)
