@@ -1,6 +1,6 @@
 # Podman Compose Setup For Installing Passbolt
 
-This configuration creates database and SSL reverse proxy containers for Passbolt.
+This configuration creates the database and Passbolt containers.
 
 Detailed info: [Tom's IT Cafe article on https://tomsitcafe.com](https://tomsitcafe.com/2023/12/22/install-passbolt-self-hosted-with-podman/)
 
