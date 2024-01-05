@@ -1,0 +1,48 @@
+---
+services:
+
+  mariadb:
+    container_name: db
+    networks:
+      - n_passbolt
+    env_file:
+      - .env.db
+    volumes:
+      - database_volume:/var/lib/mysql
+    image: docker.io/library/mariadb:11
+
+  passbolt:
+    container_name: passbolt
+    networks:
+      - n_passbolt
+    depends_on:
+      - db
+    ports:
+      - 8000:80
+      - 4430:443
+    env_file:
+      - .env.passbolt
+      - .env.passbolt_smtp
+      # - .env.mailalerts
+    volumes:
+      - gpg_volume:/etc/passbolt/gpg
+      - jwt_volume:/etc/passbolt/jwt
+      - ./certs/cert.pem:/etc/ssl/certs/certificate.crt:ro
+      - ./certs/key.pem:/etc/ssl/certs/certificate.key:ro
+    image: docker.io/passbolt/passbolt:4.4.2-1-ce
+
+networks:
+  n_passbolt:
+    external:
+      name: n_passbolt
+
+volumes:
+  database_volume:
+    external:
+      name: database_volume
+  gpg_volume:
+    external:
+      name: gpg_volume
+  jwt_volume:
+    external:
+      name: jwt_volume
